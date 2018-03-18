@@ -1,0 +1,76 @@
+---
+title: "Station 46035 Buoy Data Analysis"
+author: "Ozair Meghani, Junpei Xiao, Udochi Maduakor"
+date: "3/17/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 4)
+library(tidyverse)
+library(stringr)
+library(lubridate)
+library(dplyr)
+source("Assignment5_Part1.R")
+source("Part1_hourly_samplingexplanation.R")
+```
+
+## **Introduction**
+
+Our analysis involves using the Air and Sea temperatures of the Southern Bering Sea collected by Buoy 46035 during the years of 1985 to 2017. We began by cleaning and organizing (Tidying) the data and from there we explored the changes in temperatures over the years through timeseries and t-tests. 
+
+## **Contents**
+
+- Glimpse of cleaned Tidy data
+- Timeseries plot from 1985-2017 of Air and Sea Temperatures
+- T-test comparing mean temperatures over the 30 Years
+- Explanation of Sampling affecting Temperature Change Evaluation
+
+
+##**Glimpse of Cleaned Tidy Data**
+
+```{r}
+head(All_year3, n=5)
+tail(All_year3, n=5)
+```
+
+##**Timeseries plot from 1985-2017 of Air and Sea Temperatures**
+```{r}
+ggplot(data = All_year3, aes(Date, Temperature, color = Type),na.rm = T) +geom_line()+ ggtitle("Southern Bering Sea Air and Water Temperature Daily over past 30 years")
+```
+
+##T-Test Comparing Mean Air Temperatures Over 30 Years {.smaller}
+```{r}
+t.test(atmp1986, atmp2017, var.equal = TRUE)
+```
+Our results show that there is a significant difference in mean Air temperatures between 1986 and 2017, meaning the temperature has increased over the last 30 years at this specific location in the Bering Sea.
+
+##**T-Test Comparing Mean Sea Temperatures Over 30 Years**
+```{r}
+t.test(wtmp1986, wtmp2017, var.equal = FALSE)
+```
+The results indicate that there is also a significant difference in mean Sea temperatures between 1986 and 2017. These changes can possibly be attributed to Global Warming. 
+
+##**Explanation of Sampling affecting Temperature Change Evaluation**
+In order to determine if sampling affected our evaluation of temperature change, we decided to leave all the data in our data set, which now includes temperature observations at each hour of each day rather than only at 12 pm. With this data we created a timeseries plot and ran t-tests comparing mean temps between years 1986 and 2016 again. Our results are shown on the next two slides. 
+
+##**Explanation of Sampling affecting Temperature Change Evaluation cont.**
+```{r}
+allhoursplot 
+```
+
+##**Explanation of Sampling affecting Temperature Change Evaluation cont.**
+T-test results for air temperature
+```{r}
+t.test(atmp1986h, atmp2017h, var.equal = FALSE)
+```
+
+##**Explanation of Sampling affecting Temperature Change Evaluation cont.**
+T-test results for sea temperature
+```{r}
+t.test(wtmp1986h, wtmp2017h, var.equal = FALSE)
+```
+
+##**Explanation of Sampling affecting Temperature Change Evaluation cont.**
+Based on these plots and tests, you can see that the overal trend of temperature change was not really different based on the hourly time series plot. Just as well, our T-test results are still significant with the hourly data, thus we have concluded that sampling did not really affect our evaluation of temperature change over the past 30 years. 
+However, with the hourly data, we can see more details and extreme temperature values in our time series plot. So, even though the overall trend is the same, there are slight differences in the variation of the temperature that go unnoticed if we only use one data point per day instead of 24.  
