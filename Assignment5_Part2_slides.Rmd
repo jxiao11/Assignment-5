@@ -1,0 +1,61 @@
+---
+title: "Vegetables Chemical Treatment Analysis"
+author: "Ozair Meghani, Junpei Xiao, Udochi Maduakor"
+date: "3/17/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width = 7, fig.height = 4)
+source("veg.R")
+```
+
+## **Introduction**
+Our Analysis involved cleaning and organizing the Vegetable data focused on the following commodities: Vegetables Totals, Vegetables Other, Broccoli, Brussels Sprouts, Cauliflower, from 1990 to 2016. After tidying the data we narrowed our analysis to focus on Restricted Use Chemicals that could have toxic effects on the health of consumers of these crops. This presentation summarizes our insight and exploration of the data about chemical treatments applied to food crops as fertilizers, insecticides, etc. 
+
+## **Contents**
+- Our Focus
+- Glimpse of our cleanded Tidy Vegetable Data
+- Restricted Use Chemicals Toxicity Level
+- Plots of Applied Restricted Use Chemicals on Broccoli and Cauliflower
+- Conclusion
+
+## **Our Focus**
+The Analysis conducted was based on chemicals that are used to preserve vegetables, in particular broccoli and cauliflower. We extracted the chemical application record from USDA QuickStats, and also got the LD50 toxicity measurments from experiments conducted on a particular species (rat) from ECOTOX Database, Syngenta Crop Protection, Inc., Bayer Environmental Science, and EFSA. To simplify our analysis we focused on the broccoli and cauliflower data that was "Applications, Measured in LB". We compared this subset of the data with the toxicity levels that we found, in order to determine if the amount of the chemicals being applied to the vegetables was greater than the LD50 toxicity level which can be harmful to consumers.  
+
+## **Glimpse of Tidy Data** {.smaller}
+```{r}
+head(ru5, n = 5)
+tail(ru5, n = 5)
+```
+
+## **Restricted Use Chemicals Toxicity Levels Table** {.smaller}
+```{r}
+head(CAS1, n = 5)
+tail(CAS1, n = 5)
+```
+This table contains the toxicity levels (marked values) for restricted use chemicals that were applied to broccoli and cauliflower. 
+
+## **2006 Plot of Restricted Use Chemials Applied**
+```{r}
+k
+```
+
+## **2010 Plot of Restricted Use Chemials Applied**
+```{r}
+h
+```
+
+## **2014 Plot of Restricted Use Chemials Applied**
+```{r}
+g
+```
+
+## **2016 Plot of Restricted Use Chemials Applied**
+```{r}
+p
+```
+
+## **Conclusioin**
+
+Based on our exploratory analysis and visualization of the data we found that during the years of 2006, 2010, 2014, and 2016 for majority of the restricted use chemicals being applied to broccoli and cauliflower, the amount applied was higher than the level at which it becomes toxic. In our plots we have illustrated which chemicals were applied in safe amounts versus those that were unsafe. Clearly, this is not good for those of us who consume these vegetables regularly.
